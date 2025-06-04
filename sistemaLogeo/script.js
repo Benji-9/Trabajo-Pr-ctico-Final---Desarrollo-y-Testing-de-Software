@@ -26,6 +26,11 @@ function validatePassword(pwd) {
     const users = getUsersFromStorage();
     return users.find(user => user.username === username && user.password === password);
   }
+
+  function validateUsername(username) {
+    const regex = /^[A-Za-z0-9]{3,16}$/;
+    return regex.test(username);
+  }
   
   // Registro
   const registerForm = document.getElementById('registerForm');
@@ -43,6 +48,11 @@ function validatePassword(pwd) {
   
       if (userExists(user, email)) {
         alert("El usuario o email ya está registrado.");
+        return;
+      }
+
+      if (!validateUsername(user)) {
+        alert("El usuario debe tener entre 3 y 16 caracteres, sólo se permiten letras y números sin espacios.");
         return;
       }
   
