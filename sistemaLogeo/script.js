@@ -149,6 +149,15 @@ function validatePassword(pwd) {
         alert("Todos los campos son obligatorios.");
         return;
       }
+
+      const hoy = new Date();
+      hoy.setHours(0, 0, 0, 0); // Para comparar solo fecha, sin hora
+      const fechaIngresada = new Date(nuevaTarea.fecha);
+
+      if (fechaIngresada < hoy) {
+        alert("No se puede asignar una tarea con una fecha que ya pasó.");
+        return;
+      }
   
       tareas.push(nuevaTarea);
       guardarTareas();
