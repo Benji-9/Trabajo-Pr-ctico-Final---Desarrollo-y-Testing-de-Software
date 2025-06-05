@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <!-- Barra superior con saludo y logout -->
   <header class="topbar">
     <div class="user-info">
       <span id="userGreeting">Hola, Usuario</span>
@@ -15,39 +16,39 @@
   </header>
 
   <main class="form-group">
-  <h2>Mis Tareas</h2>
+    <h2>Crear Nueva Tarea</h2>
 
-  <form id="taskForm">
-    <label for="title">Título</label>
-    <input type="text" id="title" required />
+    <form id="taskForm">
+      <label for="title">Título</label>
+      <input type="text" id="title" required />
 
-    <label for="description">Descripción</label>
-    <textarea id="description" rows="3" required></textarea>
+      <label for="description">Descripción</label>
+      <textarea id="description" rows="3" required></textarea>
 
-    <div class="row">
-      <div class="column">
-        <label for="dueDate">Fecha de vencimiento</label>
-        <input type="date" id="dueDate" required />
+      <div class="row">
+        <div class="column">
+          <label for="dueDate">Fecha de vencimiento</label>
+          <input type="date" id="dueDate" required />
+        </div>
       </div>
-    </div>
 
-    <label for="status">Estado</label>
-    <select id="status">
-      <option value="pendiente">Pendiente</option>
-      <option value="en-progreso">En Progreso</option>
-      <option value="completada">Completada</option>
-    </select>
+      <label for="status">Estado</label>
+      <select id="status">
+        <option value="pendiente">Pendiente</option>
+        <option value="en-progreso">En Progreso</option>
+        <option value="completada">Completada</option>
+      </select>
 
-    <button type="submit" id="addTask">Agregar Tarea</button>
-  </form>
-</main>
+      <button type="submit" id="addTask">Agregar Tarea</button>
+    </form>
+  </main>
 
   <div class="task-header">
-    <h2>Lista</h2>
+    <h2>Tareas Compartidas</h2>
     <div class="filter-group">
-      <label for="filter">Filtrar:</label>
-      <select id="filter">
-        <option value="todas">Todas</option>
+      <label for="filterStatus">Filtrar:</label>
+      <select id="filterStatus">
+        <option value="Todas">Todas</option>
         <option value="pendiente">Pendiente</option>
         <option value="en-progreso">En Progreso</option>
         <option value="completada">Completada</option>
@@ -57,8 +58,7 @@
 
   <div class="task-list" id="taskList"></div>
 
-  <script src="js/task.js"></script>
   <script src="js/logout.js"></script>
-
+  <script src="js/task.js"></script>
 </body>
 </html>

@@ -223,3 +223,8 @@ button.action:hover {
 .logout-button:hover {
   background-color: #c82333;
 }
+
+.task .actions .complete {
+  background-color: #17a2b8;
+  color: white;
+}
