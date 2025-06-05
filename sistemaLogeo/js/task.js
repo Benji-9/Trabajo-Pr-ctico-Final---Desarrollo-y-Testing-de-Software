@@ -3,6 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const taskList = document.getElementById('taskList');
   const filterStatus = document.getElementById('filterStatus');
   const userGreeting = document.getElementById('userGreeting');
+  const dueDateInput = document.getElementById('dueDate');
+  if (dueDateInput) {
+    const today = new Date().toISOString().split('T')[0];
+    dueDateInput.setAttribute('min', today);
+  }
 
   const user = JSON.parse(localStorage.getItem("activeUser"));
   if (!user) {
