@@ -4,24 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gestor de Tareas</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <div class="form-group">
-    <h2>Mis Tareas</h2>
+  <header class="topbar">
+    <div class="user-info">
+      <span id="userGreeting">Hola, Usuario</span>
+      <button class="logout-button" onclick="logout()">Cerrar sesión</button>
+    </div>
+  </header>
 
+  <main class="form-group">
+  <h2>Mis Tareas</h2>
+
+  <form id="taskForm">
     <label for="title">Título</label>
-    <input type="text" id="title" placeholder="Título" required />
+    <input type="text" id="title" required />
 
     <label for="description">Descripción</label>
-    <textarea id="description" rows="3" placeholder="Descripción" required></textarea>
+    <textarea id="description" rows="3" required></textarea>
 
     <div class="row">
       <div class="column">
         <label for="dueDate">Fecha de vencimiento</label>
         <input type="date" id="dueDate" required />
       </div>
-
     </div>
 
     <label for="status">Estado</label>
@@ -32,24 +39,26 @@
     </select>
 
     <button type="submit" id="addTask">Agregar Tarea</button>
+  </form>
+</main>
+
+  <div class="task-header">
+    <h2>Lista</h2>
+    <div class="filter-group">
+      <label for="filter">Filtrar:</label>
+      <select id="filter">
+        <option value="todas">Todas</option>
+        <option value="pendiente">Pendiente</option>
+        <option value="en-progreso">En Progreso</option>
+        <option value="completada">Completada</option>
+      </select>
+    </div>
   </div>
 
-  <!-- Contenedor de encabezado con título + filtro -->
-<div class="task-header">
-  <h2>Mis Tareas</h2>
-  <div class="filter-group">
-    <label for="filter">Filtrar:</label>
-    <select id="filter">
-      <option value="todas">Todas</option>
-      <option value="pendiente">Pendiente</option>
-      <option value="en-progreso">En Progreso</option>
-      <option value="completada">Completada</option>
-    </select>
-  </div>
-</div>
+  <div class="task-list" id="taskList"></div>
 
-<!-- Lista de tareas -->
-<div class="task-list" id="taskList"></div>
-  <script src="script.js"></script>
+  <script src="js/task.js"></script>
+  <script src="js/logout.js"></script>
+
 </body>
 </html>

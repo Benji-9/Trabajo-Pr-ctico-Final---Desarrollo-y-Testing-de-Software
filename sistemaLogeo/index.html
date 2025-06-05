@@ -2,31 +2,34 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar Sesión</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <div class="container">
+  <main class="container">
     <h2>Iniciar Sesión</h2>
-    <form id="loginForm">
+    <form id="loginForm" autocomplete="on">
       <label for="username">Usuario</label>
-      <input type="text" id="username" required />
+      <input type="text" id="username" name="username" autocomplete="username" required />
 
       <label for="password">Contraseña</label>
       <div class="password-container">
-        <input type="password" id="password" required />
-        <button type="button" id="togglePassword" class="icon-button">
-          <img src="img/hide.svg" alt="Mostrar contraseña" id="iconEye" />
+        <input type="password" id="password" name="password" autocomplete="current-password" required />
+        <button type="button" class="toggle-password icon-button" data-target="password" aria-label="Mostrar contraseña">
+          <img src="img/hide.svg" alt="Mostrar contraseña" />
         </button>
       </div>
 
       <button type="submit">Ingresar</button>
-      <p class="message"><a href="recover.html">¿Olvidaste tu contraseña?</a></p>
-      <p class="message">¿No tienes cuenta? <a href="register.html">Registrarse</a></p>      
+      <p class="message"><a href="recover.html">&#191;Olvidaste tu contraseña?</a></p>
+      <p class="message">¿No tienes cuenta? <a href="register.html">Registrarse</a>
+      </p>
+      <p class="error" id="loginError"></p>
     </form>
-  </div>
+  </main>
 
-  <script src="script.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
 </body>
 </html>

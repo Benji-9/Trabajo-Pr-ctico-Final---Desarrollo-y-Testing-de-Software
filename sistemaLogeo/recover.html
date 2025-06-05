@@ -2,11 +2,12 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Recuperar Contraseña</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <div class="container">
+  <main class="container">
     <h2>Recuperar Contraseña</h2>
     <form id="recoverForm">
       <label for="recoverEmail">Email asociado a tu cuenta</label>
@@ -15,7 +16,7 @@
       <button type="submit">Enviar Instrucciones</button>
       <p class="message"><a href="index.html">Volver al Login</a></p>
     </form>
-  </div>
+  </main>
 
   <script>
     document.getElementById('recoverForm').addEventListener('submit', (e) => {

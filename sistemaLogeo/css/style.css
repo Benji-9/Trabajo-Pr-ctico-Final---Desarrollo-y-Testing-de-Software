@@ -1,0 +1,225 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 2rem;
+}
+
+.container,
+.form-group {
+  max-width: 600px;
+  margin: auto;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 0.3rem;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button[type="submit"],
+button.action {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.7rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button[type="submit"]:hover,
+button.action:hover {
+  background-color: #45a049;
+}
+
+/* Contraseña con botón */
+.password-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.password-container input {
+  width: 100%;
+  padding-right: 2.5rem;
+}
+
+.icon-button {
+  position: absolute;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.icon-button img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Mensajes y errores */
+.message {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+.message a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.message a:hover {
+  text-decoration: underline;
+}
+
+.error {
+  color: red;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* Task Manager */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.column {
+  flex: 1;
+  min-width: 200px;
+}
+
+.task-header {
+  max-width: 600px;
+  margin: 2rem auto 1rem auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.task-list {
+  max-width: 600px;
+  margin: 1rem auto;
+}
+
+.task {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin-bottom: 1rem;
+}
+
+.task h3 {
+  margin: 0 0 0.5rem 0;
+}
+
+.task p {
+  margin: 0.3rem 0;
+}
+
+.task small {
+  color: #555;
+}
+
+.task .actions {
+  margin-top: 0.8rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.task .actions button {
+  padding: 0.4rem 0.7rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.task .actions .edit {
+  background-color: #ffc107;
+  color: white;
+}
+
+.task .actions .delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+.topbar {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#userGreeting {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.logout-button {
+  background-color: #dc3545;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #c82333;
+}
