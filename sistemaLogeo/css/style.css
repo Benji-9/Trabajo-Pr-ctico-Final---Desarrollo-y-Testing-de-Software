@@ -84,7 +84,7 @@ body {
     right: -75px;
 }
 
-/* Right side - Login form */
+/* Right side - Form section */
 .login-section {
     flex: 1;
     background: white;
@@ -148,293 +148,7 @@ body {
     padding: 1rem 0;
     font-size: 1rem;
     outline: none;
-}
-
-.form-control::placeholder {
-    color: #999;
-}
-
-.toggle-password {
-    background: none;
-    border: none;
-    padding: 1rem;
-    color: #4a90e2;
-    font-size: 0.8rem;
-    font-weight: 600;
-    cursor: pointer;
-    text-transform: uppercase;
-}
-
-.form-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    font-size: 0.9rem;
-}
-
-.checkbox-group {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.checkbox-group input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-}
-
-.forgot-link {
-    color: #4a90e2;
-    text-decoration: none;
-}
-
-.forgot-link:hover {
-    text-decoration: underline;
-}
-
-.btn {
     width: 100%;
-    padding: 1rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-bottom: 1rem;
-}
-
-.btn-primary {
-    background: #4a90e2;
-    color: white;
-}
-
-.btn-primary:hover {
-    background: #357abd;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
-}
-
-.btn-outline {
-    background: white;
-    color: #333;
-    border: 1px solid #ddd;
-}
-
-.btn-outline:hover {
-    background: #f8f9fa;
-    border-color: #999;
-}
-
-.divider {
-    text-align: center;
-    margin: 1.5rem 0;
-    color: #999;
-    font-size: 0.9rem;
-    position: relative;
-}
-
-.divider::before,
-.divider::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 45%;
-    height: 1px;
-    background: #ddd;
-}
-
-.divider::before {
-    left: 0;
-}
-
-.divider::after {
-    right: 0;
-}
-
-.signup-link {
-    text-align: center;
-    font-size: 0.9rem;
-    color: #666;
-}
-
-.signup-link a {
-    color: #4a90e2;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.signup-link a:hover {
-    text-decoration: underline;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-    
-    .welcome-section {
-        display: none;
-    }
-    
-    .login-section {
-        flex: none;
-        height: 100vh;
-    }
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    height: 100vh;
-    overflow: hidden;
-}
-
-.container {
-    display: flex;
-    height: 100vh;
-}
-
-/* Left side - Welcome section */
-.welcome-section {
-    flex: 1;
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #4a90e2 100%);
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-align: center;
-    overflow: hidden;
-}
-
-.welcome-content {
-    z-index: 2;
-    max-width: 400px;
-    padding: 2rem;
-}
-
-.welcome-content h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    letter-spacing: 2px;
-}
-
-.welcome-content h2 {
-    font-size: 1.2rem;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 1.5rem;
-    opacity: 0.9;
-}
-
-.welcome-content p {
-    font-size: 1rem;
-    line-height: 1.6;
-    opacity: 0.8;
-}
-
-/* Decorative circles */
-.circle {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.circle-1 {
-    width: 300px;
-    height: 300px;
-    bottom: -150px;
-    left: -150px;
-}
-
-.circle-2 {
-    width: 200px;
-    height: 200px;
-    top: -100px;
-    right: -100px;
-}
-
-.circle-3 {
-    width: 150px;
-    height: 150px;
-    bottom: 50px;
-    right: -75px;
-}
-
-/* Right side - Login form */
-.login-section {
-    flex: 1;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-}
-
-.login-form {
-    width: 100%;
-    max-width: 400px;
-}
-
-.login-header {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.login-header h2 {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 0.5rem;
-}
-
-.login-header p {
-    color: #666;
-    font-size: 0.9rem;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.input-group {
-    position: relative;
-    display: flex;
-    align-items: center;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: #f8f9fa;
-    transition: border-color 0.3s ease;
-}
-
-.input-group:focus-within {
-    border-color: #4a90e2;
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
-}
-
-.input-icon {
-    padding: 1rem;
-    color: #666;
-    font-size: 1.1rem;
-}
-
-.form-control {
-    flex: 1;
-    border: none;
-    background: transparent;
-    padding: 1rem 0;
-    font-size: 1rem;
-    outline: none;
 }
 
 .form-control::placeholder {
@@ -559,7 +273,7 @@ body {
 /* Back to login link */
 .back-to-login {
     text-align: center;
-    margin: 1.5rem 0;
+    margin-top: 1.5rem;
 }
 
 .back-link {
@@ -600,23 +314,12 @@ body {
     line-height: 1.6;
 }
 
-/* Additional form validation styles */
-.form-control:invalid:not(:placeholder-shown) {
-    border-color: #dc3545;
-}
-
-.form-control:valid:not(:placeholder-shown) {
-    border-color: #28a745;
-}
-
-.input-group:has(.form-control:invalid:not(:placeholder-shown)) {
-    border-color: #dc3545;
-    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
-}
-
-.input-group:has(.form-control:valid:not(:placeholder-shown)) {
-    border-color: #28a745;
-    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+.error {
+    color: #dc3545;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 /* Responsive design */
@@ -632,8 +335,10 @@ body {
     .login-section {
         flex: none;
         height: 100vh;
+        justify-content: flex-start;
+        padding-top: 4rem;
     }
-    
+
     .welcome-content h1 {
         font-size: 2.5rem;
     }
@@ -642,4 +347,19 @@ body {
         max-width: 100%;
         padding: 1rem;
     }
+}
+/* Nuestro CSS personalizado ahora es mucho más simple gracias a Bootstrap */
+
+.task-list .actions button {
+  font-weight: 500; /* Hacemos la letra de los botones un poco más fina */
+}
+
+/* Estilo para que las tareas completadas se vean atenuadas */
+.card.border-success {
+  background-color: #f8f9fa;
+}
+
+.card.border-success h5,
+.card.border-success p {
+  text-decoration: line-through;
 }

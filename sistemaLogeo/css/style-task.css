@@ -1,0 +1,15 @@
+/* Pequeños ajustes para el gestor de tareas sobre Bootstrap */
+body {
+    background-color: #f8f9fa; /* Un fondo de color suave */
+}
+
+/* Estilo para que las tareas completadas se vean atenuadas */
+.card.border-success {
+  background-color: #f8f9fa;
+  opacity: 0.8;
+}
+
+.card.border-success h5,
+.card.border-success p {
+  text-decoration: line-through;
+}

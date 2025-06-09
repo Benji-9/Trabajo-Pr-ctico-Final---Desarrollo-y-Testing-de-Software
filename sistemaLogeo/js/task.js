@@ -1,13 +1,15 @@
+// He combinado la lógica de la versión anterior con la nueva estructura de Bootstrap
 document.addEventListener('DOMContentLoaded', () => {
   const taskForm = document.getElementById('taskForm');
   const taskList = document.getElementById('taskList');
   const filterStatus = document.getElementById('filterStatus');
   const userGreeting = document.getElementById('userGreeting');
   const dueDateInput = document.getElementById('dueDate');
-  if (dueDateInput) {
-    const today = new Date().toISOString().split('T')[0];
-    dueDateInput.setAttribute('min', today);
-  }
+  const submitButton = document.getElementById('addTask');
+  const formTitle = document.getElementById('formTitle');
+  const cancelEditButton = document.getElementById('cancelEdit');
+  
+  let editingIndex = null;
 
   const user = JSON.parse(localStorage.getItem("activeUser"));
   if (!user) {
@@ -16,94 +18,101 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  if (userGreeting) {
-    userGreeting.textContent = `Hola, ${user.username}`;
-  }
+  if (userGreeting) userGreeting.textContent = `Hola, ${user.username}`;
+  if (dueDateInput) dueDateInput.setAttribute('min', new Date().toISOString().split('T')[0]);
 
-  function getTasks() {
-    return JSON.parse(localStorage.getItem('tasks')) || [];
-  }
-
-  function saveTasks(tasks) {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-  }
+  function getTasks() { return JSON.parse(localStorage.getItem('tasks')) || []; }
+  function saveTasks(tasks) { localStorage.setItem('tasks', JSON.stringify(tasks)); }
 
   function renderTasks() {
-    const filter = filterStatus.value;
     const allTasks = getTasks();
-    let tasks = filter === "Todas" ? allTasks : allTasks.filter(task => task.status === filter);
+    const filter = filterStatus.value;
+    const tasksToRender = filter === "Todas" ? allTasks : allTasks.filter(task => task.status === filter);
 
-    tasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+    tasksToRender.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
     taskList.innerHTML = '';
-
-    tasks.forEach((task, index) => {
-      const taskDiv = document.createElement('div');
-      taskDiv.className = 'task';
-
-      taskDiv.innerHTML = `
-        <h4>${task.title}</h4>
-        <p>${task.description}</p>
-        <p><strong>Estado:</strong> ${task.status}</p>
-        <p><strong>Vence:</strong> ${task.dueDate}</p>
-        <p><em>Creado por: ${task.user}</em></p>
-      `;
-
-      const actionsDiv = document.createElement('div');
-      actionsDiv.className = 'actions';
-
-      // Permitir marcar como completada si no lo está
-      if (task.status !== 'completada') {
-        const completeBtn = document.createElement('button');
-        completeBtn.className = 'complete';
-        completeBtn.textContent = 'Marcar como completada';
-        completeBtn.onclick = () => completeTask(index);
-        actionsDiv.appendChild(completeBtn);
-      }
-
-      // Solo el creador puede editar o eliminar
-      if (task.user === user.username) {
-        const editBtn = document.createElement('button');
-        editBtn.className = 'edit';
-        editBtn.textContent = 'Editar';
-        editBtn.onclick = () => editTask(index);
-
-        const deleteBtn = document.createElement('button');
-        deleteBtn.className = 'delete';
-        deleteBtn.textContent = 'Eliminar';
-        deleteBtn.onclick = () => deleteTask(index);
-
-        actionsDiv.appendChild(editBtn);
-        actionsDiv.appendChild(deleteBtn);
-      }
-
-      if (actionsDiv.children.length > 0) {
-        taskDiv.appendChild(actionsDiv);
-      }
-
-      taskList.appendChild(taskDiv);
-    });
-  }
-
-  taskForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const title = document.getElementById('title').value.trim();
-    const description = document.getElementById('description').value.trim();
-    const dueDate = document.getElementById('dueDate').value;
-    const status = document.getElementById('status').value;
-
-    if (!title || !description || !dueDate) {
-      alert("Todos los campos son obligatorios.");
+    
+    if (tasksToRender.length === 0) {
+      taskList.innerHTML = `<div class="alert alert-info">No hay tareas para mostrar con el filtro actual.</div>`;
       return;
     }
 
-    const newTask = { title, description, dueDate, status, user: user.username };
-    const tasks = getTasks();
-    tasks.push(newTask);
-    saveTasks(tasks);
-    renderTasks();
+    tasksToRender.forEach(task => {
+      const originalIndex = allTasks.findIndex(t => t === task);
+      const taskCard = document.createElement('div');
+      
+      let statusInfo = '';
+      if (task.status === 'completada') {
+        taskCard.className = 'card shadow-sm mb-3 border-success text-muted';
+        statusInfo = `<span class="badge bg-success">Completada</span>`;
+      } else if (task.status === 'en-progreso') {
+        taskCard.className = 'card shadow-sm mb-3 border-warning';
+        statusInfo = `<span class="badge bg-warning text-dark">En Progreso</span>`;
+      } else {
+        taskCard.className = 'card shadow-sm mb-3 border-primary';
+        statusInfo = `<span class="badge bg-primary">Pendiente</span>`;
+      }
+
+      taskCard.innerHTML = `
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-start">
+            <h5 class="card-title mb-1">${task.title}</h5>
+            ${statusInfo}
+          </div>
+          <p class="card-text mb-2">${task.description}</p>
+          <small class="d-block mb-1"><strong>Vence:</strong> ${task.dueDate}</small>
+          <small class="d-block text-body-secondary"><em>Creado por: ${task.user}</em></small>
+          <div class="actions mt-3"></div>
+        </div>
+      `;
+      
+      const actionsDiv = taskCard.querySelector('.actions');
+      if (task.status !== 'completada' && task.user === user.username) {
+        const completeBtn = document.createElement('button');
+        completeBtn.className = 'btn btn-success btn-sm me-2';
+        completeBtn.textContent = 'Completar';
+        completeBtn.onclick = () => completeTask(originalIndex);
+        actionsDiv.appendChild(completeBtn);
+      }
+
+      if (task.user === user.username) {
+        const editBtn = document.createElement('button');
+        editBtn.className = 'btn btn-warning btn-sm me-2';
+        editBtn.textContent = 'Editar';
+        editBtn.onclick = () => enterEditMode(originalIndex);
+        actionsDiv.appendChild(editBtn);
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'btn btn-danger btn-sm';
+        deleteBtn.textContent = 'Eliminar';
+        deleteBtn.onclick = () => deleteTask(originalIndex);
+        actionsDiv.appendChild(deleteBtn);
+      }
+      
+      taskList.appendChild(taskCard);
+    });
+  }
+
+  function enterEditMode(index) {
+    const task = getTasks()[index];
+    formTitle.textContent = "Editando Tarea";
+    document.getElementById('title').value = task.title;
+    document.getElementById('description').value = task.description;
+    document.getElementById('status').value = task.status;
+    document.getElementById('dueDate').value = task.dueDate;
+    submitButton.textContent = 'Actualizar Tarea';
+    cancelEditButton.style.display = 'block';
+    editingIndex = index;
+    formTitle.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function exitEditMode() {
+    formTitle.textContent = "Crear Nueva Tarea";
+    submitButton.textContent = 'Agregar Tarea';
+    cancelEditButton.style.display = 'none';
+    editingIndex = null;
     taskForm.reset();
-  });
+  }
 
   function completeTask(index) {
     const tasks = getTasks();
@@ -113,24 +122,36 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function deleteTask(index) {
+    if (confirm('¿Estás seguro?')) {
+      const tasks = getTasks();
+      tasks.splice(index, 1);
+      saveTasks(tasks);
+      if (index === editingIndex) exitEditMode();
+      renderTasks();
+    }
+  }
+
+  taskForm.addEventListener('submit', (e) => {
+    e.preventDefault();
     const tasks = getTasks();
-    tasks.splice(index, 1);
+    const taskData = {
+      title: document.getElementById('title').value.trim(),
+      description: document.getElementById('description').value.trim(),
+      dueDate: document.getElementById('dueDate').value,
+      status: document.getElementById('status').value,
+    };
+    if (editingIndex !== null) {
+      tasks[editingIndex] = { ...tasks[editingIndex], ...taskData };
+    } else {
+      tasks.push({ ...taskData, user: user.username });
+    }
     saveTasks(tasks);
     renderTasks();
-  }
+    exitEditMode();
+  });
 
-  function editTask(index) {
-    const tasks = getTasks();
-    const task = tasks[index];
-
-    document.getElementById('title').value = task.title;
-    document.getElementById('description').value = task.description;
-    document.getElementById('status').value = task.status;
-    document.getElementById('dueDate').value = task.dueDate;
-
-    deleteTask(index); // Se reemplaza al guardar
-  }
-
+  cancelEditButton.addEventListener('click', exitEditMode);
   filterStatus.addEventListener('change', renderTasks);
+  
   renderTasks();
 });

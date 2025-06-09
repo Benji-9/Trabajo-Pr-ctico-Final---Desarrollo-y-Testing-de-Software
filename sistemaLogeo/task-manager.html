@@ -1,64 +1,72 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gestor de Tareas</title>
-  <link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Gestor de Tareas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style-task.css" />
 </head>
-<body>
-  <!-- Barra superior con saludo y logout -->
-  <header class="topbar">
-    <div class="user-info">
-      <span id="userGreeting">Hola, Usuario</span>
-      <button class="logout-button" onclick="logout()">Cerrar sesión</button>
-    </div>
-  </header>
+<body class="bg-light">
 
-  <main class="form-group">
-    <h2>Crear Nueva Tarea</h2>
+    <div class="container mt-4">
+        <header class="d-flex justify-content-between align-items-center p-3 mb-4 bg-white rounded shadow-sm">
+            <span id="userGreeting" class="fw-bold fs-5">Hola, Usuario</span>
+            <button class="btn btn-danger btn-sm" onclick="logout()">Cerrar sesión</button>
+        </header>
 
-    <form id="taskForm">
-      <label for="title">Título</label>
-      <input type="text" id="title" required />
+        <main class="card shadow-sm mb-5">
+            <div class="card-body p-4">
+                <h2 id="formTitle" class="card-title mb-4">Crear Nueva Tarea</h2>
+                <form id="taskForm">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Título</label>
+                        <input type="text" class="form-control" id="title" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Descripción</label>
+                        <textarea id="description" class="form-control" rows="3" required></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="dueDate" class="form-label">Fecha de vencimiento</label>
+                            <input type="date" class="form-control" id="dueDate" required />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="status" class="form-label">Estado</label>
+                            <select id="status" class="form-select">
+                                <option value="pendiente">Pendiente</option>
+                                <option value="en-progreso">En Progreso</option>
+                                <option value="completada">Completada</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2 mt-3">
+                        <button type="submit" id="addTask" class="btn btn-primary w-100 fw-bold">Agregar Tarea</button>
+                        <button type="button" id="cancelEdit" class="btn btn-secondary w-100 fw-bold" style="display: none;">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </main>
 
-      <label for="description">Descripción</label>
-      <textarea id="description" rows="3" required></textarea>
-
-      <div class="row">
-        <div class="column">
-          <label for="dueDate">Fecha de vencimiento</label>
-          <input type="date" id="dueDate" required />
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="m-0">Tareas Compartidas</h3>
+            <div class="d-flex align-items-center gap-2">
+                <label for="filterStatus" class="form-label m-0">Filtrar:</label>
+                <select id="filterStatus" class="form-select form-select-sm" style="width: auto;">
+                    <option value="Todas">Todas</option>
+                    <option value="pendiente">Pendiente</option>
+                    <option value="en-progreso">En Progreso</option>
+                    <option value="completada">Completada</option>
+                </select>
+            </div>
         </div>
-      </div>
 
-      <label for="status">Estado</label>
-      <select id="status">
-        <option value="pendiente">Pendiente</option>
-        <option value="en-progreso">En Progreso</option>
-        <option value="completada">Completada</option>
-      </select>
-
-      <button type="submit" id="addTask">Agregar Tarea</button>
-    </form>
-  </main>
-
-  <div class="task-header">
-    <h2>Tareas Compartidas</h2>
-    <div class="filter-group">
-      <label for="filterStatus">Filtrar:</label>
-      <select id="filterStatus">
-        <option value="Todas">Todas</option>
-        <option value="pendiente">Pendiente</option>
-        <option value="en-progreso">En Progreso</option>
-        <option value="completada">Completada</option>
-      </select>
+        <div class="task-list" id="taskList"></div>
     </div>
-  </div>
 
-  <div class="task-list" id="taskList"></div>
-
-  <script src="js/logout.js"></script>
-  <script src="js/task.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/task.js"></script>
 </body>
 </html>

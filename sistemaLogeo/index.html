@@ -8,96 +8,63 @@
 </head>
 <body>
     <div class="container">
-        <!-- Left side - Welcome section -->
         <div class="welcome-section">
             <div class="welcome-content">
-                <h1>WELCOME</h1>
+                <h1>BIENVENIDO</h1>
                 <h2>Gestor de Tareas</h2>
                 <p>Gestioná tus tareas de manera rápida, simple y colaborativa.</p>
                 <p>Desde cualquier dispositivo. En cualquier momento.</p>
             </div>
-            
-            <!-- Decorative circles -->
             <div class="circle circle-1"></div>
             <div class="circle circle-2"></div>
             <div class="circle circle-3"></div>
         </div>
 
-        <!-- Right side - Login form -->
         <div class="login-section">
             <div class="login-form">
                 <div class="login-header">
                     <h2>Sign in</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <p>Accede a tu cuenta para gestionar tus tareas.</p>
                 </div>
 
                 <form id="loginForm">
                     <div class="form-group">
                         <div class="input-group">
-                            <div class="input-icon">👤</div>
+                            <span class="input-icon">👤</span>
                             <input type="text" class="form-control" id="username" placeholder="User Name" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="input-group">
-                            <div class="input-icon">🔒</div>
+                            <span class="input-icon">🔒</span>
                             <input type="password" class="form-control" id="password" placeholder="Password" required>
-                            <button type="button" class="toggle-password" id="togglePassword">Show</button>
+                            <button type="button" class="toggle-password">Show</button>
                         </div>
                     </div>
 
                     <div class="form-options">
                         <div class="checkbox-group">
                             <input type="checkbox" id="remember">
-                            <label for="remember">Remember me</label>
+                            <label for="remember">Recordarme</label>
                         </div>
-                        <a href="recover.html" class="forgot-link">Forgot Password?</a>
+                        <a href="recover.html" class="forgot-link">¿Olvidaste tu contraseña?</a>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Sign in</button>
+                    <p class="error" id="loginError"></p>
 
-                    <div class="divider">OR</div>
+                    <div class="divider">O</div>
 
-                    <button type="button" class="btn btn-outline">Sign in with other</button>
+                    <button type="button" class="btn btn-outline">Sign in with Google</button>
 
                     <div class="signup-link">
-                        Don't have an account? <a href="register.html">Sign up</a>
+                        ¿No tienes una cuenta? <a href="register.html">Registrate</a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
-    <script>
-        // Toggle password visibility
-        const togglePassword = document.getElementById('togglePassword');
-        const passwordInput = document.getElementById('password');
-
-        togglePassword.addEventListener('click', function() {
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            this.textContent = type === 'password' ? 'Show' : 'Hide';
-        });
-
-        // Form submission
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            
-            // Basic validation
-            if (!username || !password) {
-                alert('Por favor, completa todos los campos');
-                return;
-            }
-            
-            // Simulate login validation (replace with actual authentication)
-            if (username && password) {
-                // Redirect to task manager
-                window.location.href = 'task-manager.html';
-            }
-        });
-    </script>
+    <script src="js/login.js"></script>
 </body>
 </html>
