@@ -1,35 +1,103 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Iniciar Sesión</title>
-  <link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in - TaskManager</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <main class="container">
-    <h2>Iniciar Sesión</h2>
-    <form id="loginForm" autocomplete="on">
-      <label for="username">Usuario</label>
-      <input type="text" id="username" name="username" autocomplete="username" required />
+    <div class="container">
+        <!-- Left side - Welcome section -->
+        <div class="welcome-section">
+            <div class="welcome-content">
+                <h1>WELCOME</h1>
+                <h2>Gestor de Tareas</h2>
+                <p>Gestioná tus tareas de manera rápida, simple y colaborativa.</p>
+                <p>Desde cualquier dispositivo. En cualquier momento.</p>
+            </div>
+            
+            <!-- Decorative circles -->
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+            <div class="circle circle-3"></div>
+        </div>
 
-      <label for="password">Contraseña</label>
-      <div class="password-container">
-        <input type="password" id="password" name="password" autocomplete="current-password" required />
-        <button type="button" class="toggle-password icon-button" data-target="password" aria-label="Mostrar contraseña">
-          <img src="img/hide.svg" alt="Mostrar contraseña" />
-        </button>
-      </div>
+        <!-- Right side - Login form -->
+        <div class="login-section">
+            <div class="login-form">
+                <div class="login-header">
+                    <h2>Sign in</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
 
-      <button type="submit">Ingresar</button>
-      <p class="message"><a href="recover.html">&#191;Olvidaste tu contraseña?</a></p>
-      <p class="message">¿No tienes cuenta? <a href="register.html">Registrarse</a>
-      </p>
-      <p class="error" id="loginError"></p>
-    </form>
-  </main>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-icon">👤</div>
+                            <input type="text" class="form-control" id="username" placeholder="User Name" required>
+                        </div>
+                    </div>
 
-  <script src="js/ui.js"></script>
-  <script src="js/auth.js"></script>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-icon">🔒</div>
+                            <input type="password" class="form-control" id="password" placeholder="Password" required>
+                            <button type="button" class="toggle-password" id="togglePassword">Show</button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <a href="recover.html" class="forgot-link">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+
+                    <div class="divider">OR</div>
+
+                    <button type="button" class="btn btn-outline">Sign in with other</button>
+
+                    <div class="signup-link">
+                        Don't have an account? <a href="register.html">Sign up</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle password visibility
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.textContent = type === 'password' ? 'Show' : 'Hide';
+        });
+
+        // Form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Basic validation
+            if (!username || !password) {
+                alert('Por favor, completa todos los campos');
+                return;
+            }
+            
+            // Simulate login validation (replace with actual authentication)
+            if (username && password) {
+                // Redirect to task manager
+                window.location.href = 'task-manager.html';
+            }
+        });
+    </script>
 </body>
 </html>

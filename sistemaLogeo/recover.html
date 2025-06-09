@@ -1,29 +1,83 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Recuperar Contraseña</title>
-  <link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Contraseña - TaskManager</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <main class="container">
-    <h2>Recuperar Contraseña</h2>
-    <form id="recoverForm">
-      <label for="recoverEmail">Email asociado a tu cuenta</label>
-      <input type="email" id="recoverEmail" required />
+    <div class="container">
+        <!-- Left side - Welcome section -->
+        <div class="welcome-section">
+            <div class="welcome-content">
+                <h1>FORGOT</h1>
+                <h2>Password Recovery</h2>
+                <p></p>
+            </div>
+            
+            <!-- Decorative circles -->
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+            <div class="circle circle-3"></div>
+        </div>
 
-      <button type="submit">Enviar Instrucciones</button>
-      <p class="message"><a href="index.html">Volver al Login</a></p>
-    </form>
-  </main>
+        <!-- Right side - Recovery form -->
+        <div class="login-section">
+            <div class="login-form">
+                <div class="login-header">
+                    <h2>Recover Password</h2>
+                    <p>Ingresa tu email para recuperar tu contraseña</p>
+                </div>
 
-  <script>
-    document.getElementById('recoverForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = document.getElementById('recoverEmail').value;
-      alert(`Se enviaron instrucciones a: ${email}`);
-    });
-  </script>
+                <form id="recoverForm">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-icon">📧</div>
+                            <input type="email" class="form-control" id="recoverEmail" placeholder="Email Address" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Send Instructions</button>
+
+                    <div class="back-to-login">
+                        <a href="index.html" class="back-link">← Back to Sign in</a>
+                    </div>
+
+                    <div class="signup-link">
+                        Don't have an account? <a href="register.html">Sign up</a>
+                    </div>
+                </form>
+
+                <!-- Success message (hidden by default) -->
+                <div id="successMessage" class="success-message" style="display: none;">
+                    <div class="success-icon">✅</div>
+                    <h3>Check your email</h3>
+                    <p>We've sent password recovery instructions to your email address.</p>
+                    <button type="button" class="btn btn-outline" onclick="location.href='index.html'">Back to Sign in</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('recoverForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('recoverEmail').value;
+            
+            if (!email) {
+                alert('Por favor, ingresa tu dirección de email');
+                return;
+            }
+            
+            // Hide form and show success message
+            document.querySelector('form').style.display = 'none';
+            document.querySelector('.login-header').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Simulate sending email (replace with actual functionality)
+            console.log('Password recovery requested for:', email);
+        });
+    </script>
 </body>
 </html>
