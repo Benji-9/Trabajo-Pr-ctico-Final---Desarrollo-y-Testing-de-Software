@@ -2,47 +2,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.getElementById('registerForm');
     const registerError = document.getElementById('registerError');
 
-    registerForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+    // La función de validación se mantiene igual
+    function validatePassword(password) {
+        const regex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+        return regex.test(password);
+    }
 
-        const username = document.getElementById('newUsername').value.trim();
-        const email = document.getElementById('newEmail').value.trim();
-        const password = document.getElementById('newPassword').value.trim();
-        
-        if (!username || !email || !password) {
-            registerError.textContent = 'Todos los campos son obligatorios.';
-            return;
-        }
+    if (registerForm) {
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-        const users = JSON.parse(localStorage.getItem('users')) || [];
+            const username = document.getElementById('newUsername').value.trim();
+            const email = document.getElementById('newEmail').value.trim();
+            const password = document.getElementById('newPassword').value.trim();
+            
+            registerError.textContent = '';
 
-        // Verificar si el usuario ya existe
-        const userExists = users.some(u => u.username === username || u.email === email);
+            if (!username || !email || !password) {
+                registerError.textContent = 'Todos los campos son obligatorios.';
+                return;
+            }
 
-        if (userExists) {
-            registerError.textContent = 'El nombre de usuario o el email ya están registrados.';
-            return;
-        }
+            if (!validatePassword(password)) {
+                registerError.textContent = 'La contraseña debe tener al menos 8 caracteres, una mayúscula y un número.';
+                return;
+            }
 
-        // Agregar el nuevo usuario
-        const newUser = { username, email, password };
-        users.push(newUser);
-        localStorage.setItem('users', JSON.stringify(users));
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const userExists = users.some(u => u.username === username || u.email === email);
 
-        // Notificar al usuario y redirigir
-        alert('¡Cuenta creada con éxito! Ahora puedes iniciar sesión.');
-        window.location.href = 'index.html';
-    });
+            if (userExists) {
+                registerError.textContent = 'El nombre de usuario o el email ya están registrados.';
+                return;
+            }
 
-    // Lógica para mostrar/ocultar contraseña
-    const togglePassword = document.getElementById('togglePassword');
-    const passwordInput = document.getElementById('newPassword');
+            const newUser = { username, email, password };
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
 
-    if (togglePassword && passwordInput) {
-        togglePassword.addEventListener('click', function() {
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            this.textContent = type === 'password' ? 'Mostrar' : 'Ocultar';
+            alert('¡Cuenta creada con éxito! Ahora puedes iniciar sesión.');
+            window.location.href = 'index.html';
         });
     }
+
 });
