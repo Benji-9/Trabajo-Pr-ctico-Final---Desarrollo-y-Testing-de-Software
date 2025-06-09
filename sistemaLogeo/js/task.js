@@ -67,7 +67,11 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       
       const actionsDiv = taskCard.querySelector('.actions');
-      if (task.status !== 'completada' && task.user === user.username) {
+
+      // ### INICIO DEL CAMBIO ###
+      // 1. Lógica para el botón "Completar"
+      // CUALQUIER usuario puede marcar como completada, siempre que la tarea no lo esté ya.
+      if (task.status !== 'completada') {
         const completeBtn = document.createElement('button');
         completeBtn.className = 'btn btn-success btn-sm me-2';
         completeBtn.textContent = 'Completar';
@@ -75,6 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
         actionsDiv.appendChild(completeBtn);
       }
 
+      // 2. Lógica para los botones "Editar" y "Eliminar"
+      // SOLO el creador de la tarea puede ver estos botones.
       if (task.user === user.username) {
         const editBtn = document.createElement('button');
         editBtn.className = 'btn btn-warning btn-sm me-2';
@@ -88,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         deleteBtn.onclick = () => deleteTask(originalIndex);
         actionsDiv.appendChild(deleteBtn);
       }
+      // ### FIN DEL CAMBIO ###
       
       taskList.appendChild(taskCard);
     });
