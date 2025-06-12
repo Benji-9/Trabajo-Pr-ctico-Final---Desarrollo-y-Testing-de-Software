@@ -107,12 +107,9 @@ if (registerForm) {
         emailInput.classList.add('is-invalid');
         formIsValid = false;
     } else if (isEmailTaken(email)) {
-        // ### INICIO DEL CAMBIO ###
-        // Se cambia el mensaje por uno con un enlace para recuperar la contraseña.
         emailError.innerHTML = `Este email ya está registrado. <a href="recover.html">¿Olvidaste tu contraseña?</a>`;
         emailInput.classList.add('is-invalid');
         formIsValid = false;
-        // ### FIN DEL CAMBIO ###
     }
 
     if (password === '' || !validatePassword(password)) {
