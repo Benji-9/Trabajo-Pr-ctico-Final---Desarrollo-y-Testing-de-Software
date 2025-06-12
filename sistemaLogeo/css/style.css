@@ -28,6 +28,14 @@ body {
     overflow: hidden;
 }
 
+.validation-message {
+    font-size: 0.875em;
+    color: #dc3545; /* Color rojo de Bootstrap para errores */
+    height: 1.2em; /* Altura fija para que el layout no salte */
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
 .welcome-content {
     z-index: 2;
     max-width: 400px;
