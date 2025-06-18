@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (passwordInput) {
                 const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
                 passwordInput.setAttribute('type', type);
-                button.textContent = type === 'password' ? 'Show' : 'Hide';
+                button.textContent = type === 'password' ? 'Mostrar' : 'Ocultar';
             }
         });
     });
